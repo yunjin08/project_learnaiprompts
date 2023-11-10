@@ -14,6 +14,12 @@ module.exports = {
       colors: {
         "primary-orange": "#FF5722",
       },
+      screens: {
+        hey: "908px",
+      },
+      boxShadow: {
+        shad: "0 -50px 60px 60px rgba(0, 0, 0)",
+      },
     },
   },
   plugins: [],

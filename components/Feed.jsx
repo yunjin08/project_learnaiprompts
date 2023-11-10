@@ -6,7 +6,7 @@ import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
-    <div className="mt-16 prompt_layout">
+    <div className="mt-16 prompt_layout mb-80">
       {data.map((post) => (
         <PromptCard
           key={post._id}
@@ -76,7 +76,7 @@ const Feed = () => {
           value={searchText}
           onChange={handleSearchChange}
           required
-          className="search_input peer"
+          className="search_input peer max-w-xl"
         />
       </form>
 
