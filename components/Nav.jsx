@@ -4,10 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Nav = () => {
   const { data: session } = useSession();
-
+  const router = useRouter();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -39,9 +40,18 @@ const Nav = () => {
               Create Post
             </Link>
 
-            <button type="button" onClick={signOut} className="outline_btn">
+            <Link
+              href="/"
+              type="button"
+              onClick={() => {
+                signOut({ redirect: false }).then(() => {
+                  router.push("/"); // Redirect to the dashboard page after signing out
+                });
+              }}
+              className="outline_btn"
+            >
               Sign Out
-            </button>
+            </Link>
 
             <Link href="/profile">
               <Image
@@ -101,16 +111,19 @@ const Nav = () => {
                 >
                   Create Prompt
                 </Link>
-                <button
+                <Link
+                  href="/"
                   type="button"
                   onClick={() => {
                     setToggleDropdown(false);
-                    signOut();
+                    signOut({ redirect: false }).then(() => {
+                      router.push("/"); // Redirect to the dashboard page after signing out
+                    });
                   }}
                   className="mt-5 w-full black_btn"
                 >
                   Sign Out
-                </button>
+                </Link>
               </div>
             )}
           </div>

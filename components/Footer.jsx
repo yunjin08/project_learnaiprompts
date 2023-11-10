@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <section className="absolute bottom-0 -left-120 overflow-hidden bg-gradient-to-r from-blue-300 via-sky-300 to-blue-300 w-[98.9vw] shadow-inner h-52 border-t-4 border-blue-200">
+    <section className="overflow-hidden bg-gradient-to-r from-blue-300 via-sky-300 to-blue-300 w-[98.9vw] shadow-inner h-52 border-t-4 border-blue-200">
       <div className={`flex  w-full items-center justify-center px-10`}>
         <div className="font-satoshi flex flex-col flex-1 pl-20 w-10 mt-12">
           <div className="flex">

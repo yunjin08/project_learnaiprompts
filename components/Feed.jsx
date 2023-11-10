@@ -6,7 +6,7 @@ import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
-    <div className="mt-16 prompt_layout mb-80">
+    <div className="mt-16 prompt_layout mb-32">
       {data.map((post) => (
         <PromptCard
           key={post._id}
@@ -25,7 +25,6 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
-
 
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt");

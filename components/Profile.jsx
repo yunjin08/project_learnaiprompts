@@ -2,12 +2,12 @@ import PromptCard from "./PromptCard";
 
 const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
   return (
-    <section className="w-full">
+    <section className="w-full relative">
       <h1 className="head_text text-left">
         <span className="blue_gradient">{name} Profile</span>
       </h1>
       <p className="desc text-left">{desc}</p>
-      <div className="mt-10 prompt_layout grid-cols-3 mb-80">
+      <div className="mt-10 prompt_layout grid-cols-3 mb-32">
         {data.map((post) => (
           <PromptCard
             key={post._id}
