@@ -3,18 +3,26 @@
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
+import BaseLoader from "./BaseLoader";
 
-const PromptCardList = ({ data, handleTagClick }) => {
+const PromptCardList = ({ data, handleTagClick, loading }) => {
+  console.log(loading);
   return (
-    <div className="mt-16 prompt_layout mb-32">
-      {data.map((post) => (
-        <PromptCard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
-      ))}
-    </div>
+    <>
+      {loading ? (
+        <BaseLoader />
+      ) : (
+        <div className="mt-16 prompt_layout mb-32">
+          {data.map((post) => (
+            <PromptCard
+              key={post._id}
+              post={post}
+              handleTagClick={handleTagClick}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
@@ -25,12 +33,22 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
-    const data = await response.json();
+    try {
+      const response = await fetch("/api/prompt");
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
 
-    setAllPosts(data);
+      const data = await response.json();
+      setAllPosts(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -87,7 +105,11 @@ const Feed = () => {
           handleTagClick={handleTagClick}
         />
       ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+        <PromptCardList
+          data={allPosts}
+          handleTagClick={handleTagClick}
+          loading={loading}
+        />
       )}
     </section>
   );

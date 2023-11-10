@@ -8,6 +8,7 @@ import Profile from "@components/Profile";
 
 function Profiles() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
   if (session) {
@@ -17,10 +18,16 @@ function Profiles() {
   }
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`);
-      const data = await response.json();
+      try {
+        const response = await fetch(`/api/users/${session?.user.id}/posts`);
+        const data = await response.json();
 
-      setPosts(data);
+        setPosts(data);
+      } catch (error) {
+        console.log("Error fetching data: ", error);
+      } finally {
+        setLoading(false);
+      }
     };
     if (session?.user.id) fetchPosts();
   }, [session?.user.id]);
@@ -55,6 +62,7 @@ function Profiles() {
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
+      loading={loading}
     />
   );
 }
