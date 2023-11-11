@@ -12,6 +12,11 @@ const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
+  const handleLogoClick = () => {
+    // Your additional logic if needed
+    router.reload();
+  };
+
   useEffect(() => {
     (async () => {
       const res = await getProviders();
@@ -21,7 +26,11 @@ const Nav = () => {
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
-      <Link href="/" className="flex gap-2 flex-center">
+      <Link
+        href="/"
+        className="flex gap-2 flex-center"
+        onClick={handleLogoClick}
+      >
         <Image
           src="/assets/images/logo2.svg"
           alt="logo"
