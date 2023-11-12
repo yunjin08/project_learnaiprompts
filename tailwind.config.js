@@ -16,6 +16,7 @@ module.exports = {
       },
       screens: {
         hey: "908px",
+        footer: "990px",
       },
       boxShadow: {
         shad: "0 -50px 60px 60px rgba(0, 0, 0)",
