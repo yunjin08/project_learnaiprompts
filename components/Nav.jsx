@@ -11,6 +11,7 @@ const Nav = () => {
   const router = useRouter();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogoClick = () => {
     // Your additional logic if needed
