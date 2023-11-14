@@ -11,11 +11,7 @@ function Profiles() {
   const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
-  if (session) {
-    console.log("yes");
-  } else {
-    console.log("No");
-  }
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {

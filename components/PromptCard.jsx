@@ -14,7 +14,6 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
 
   const tag_string = post.tag;
   const tags = tag_string.split(" "); // Assuming tags are separated by spaces
-  console.log(tags);
 
   const [copied, setCopied] = useState("");
 

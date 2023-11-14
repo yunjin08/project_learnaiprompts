@@ -6,7 +6,6 @@ import PromptCard from "./PromptCard";
 import BaseLoader from "./BaseLoader";
 
 const PromptCardList = ({ data, handleTagClick, loading }) => {
-  console.log(loading);
   return (
     <>
       {loading ? (
