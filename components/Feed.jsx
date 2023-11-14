@@ -37,9 +37,13 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("/api/prompt", {
+        // Generate a unique cache-busting parameter (timestamp, random string, etc.)
+        const cacheBuster = new Date().getTime();
+
+        const response = await fetch(`/api/prompt?cacheBuster=${cacheBuster}`, {
           next: { revalidate: 1 },
         });
+
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
