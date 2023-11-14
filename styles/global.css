@@ -83,7 +83,11 @@
 }
 
 .semihead_text {
-  @apply text-2xl font-extrabold leading-[1.15] text-black sm:text-3xl;
+  @apply text-2xl font-extrabold leading-[1.15] text-black sm:text-xl;
+}
+
+.minihead_text {
+  @apply text-xl font-extrabold leading-[1.15] text-black sm:text-3xl;
 }
 
 .bg-back {

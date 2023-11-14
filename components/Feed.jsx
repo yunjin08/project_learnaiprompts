@@ -12,7 +12,7 @@ const PromptCardList = ({ data, handleTagClick, loading }) => {
       {loading ? (
         <BaseLoader />
       ) : (
-        <div className="mt-16 prompt_layout mb-32">
+        <div className="mt-16 prompt_layout sm:mb-32 mb-20">
           {data.map((post) => (
             <PromptCard
               key={post._id}
