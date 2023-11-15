@@ -35,29 +35,19 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        // Generate a unique cache-busting parameter (timestamp, random string, etc.)
-        const cacheBuster = new Date().getTime();
-
-        const response = await fetch(`/api/prompt?cacheBuster=${cacheBuster}`, {
-          next: { revalidate: 1 },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
+        const response = await fetch(`/api/prompt`);
 
         const data = await response.json();
+
         setAllPosts(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.log("Error fetching data: ", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchPosts();
   }, []);
-
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
     return allPosts.filter(
