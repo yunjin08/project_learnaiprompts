@@ -2,10 +2,12 @@
 
 import Feed from "@components/Feed";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -17,10 +19,6 @@ const Home = () => {
           next: { revalidate: 1 },
         });
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-
         const data = await response.json();
         setAllPosts(data);
       } catch (error) {
@@ -31,7 +29,7 @@ const Home = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [router.pathname]);
 
   return (
     <section className="w-full flex-center flex-col">
