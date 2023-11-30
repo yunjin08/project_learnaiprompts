@@ -31,7 +31,7 @@ function RootLayout({ children }) {
         />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className="bg-gradient-to-r from-indigo-200 via-sky-200 to-indigo-200 relative">
+      <body className="bg-gradient-to-r from-blue-300 via-sky-300 to-indigo-300 relative">
         <Provider>
           <div className="main">
             <div className="gradient"></div>
